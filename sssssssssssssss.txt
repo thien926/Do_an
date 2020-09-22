@@ -1,0 +1,118 @@
+//// -- LEVEL 1
+//// -- Tables and References
+
+// Creating tables
+Table KH as U {
+  id int [pk, increment] // auto-increment
+  username varchar
+  pass varchar
+  full_name varchar
+  sex varchar
+  born varchar
+  phone varchar
+  email varchar
+  address varchar
+  trangthai varchar
+}
+
+Table NV as U {
+  id int [pk, increment] // auto-increment
+  username varchar
+  pass varchar
+  full_name varchar
+  sex varchar
+  born varchar
+  phone varchar
+  email varchar
+  address varchar
+  trangthai varchar
+}
+
+Table HOADON {
+  id int [pk]
+  makh int
+  manv int
+  macthd int
+  tonggia int
+}
+
+Table CTHOADON {
+  id int [pk]
+  masach int
+  soluong int
+  tonggia int
+  ngaylaphoadon int
+  ngaynhanhang int
+}
+
+Table NSB {
+  id int [pk]
+  full_name varchar
+  diachi varchar
+  sdt varchar
+  email varchar
+}
+
+Table NPH {
+  id int [pk]
+  full_name varchar
+  diachi varchar
+  sdt varchar
+  email varchar
+}
+
+Table Tacgia {
+  id int [pk]
+  name varchar
+  
+}
+
+Table Dichgia {
+  id int [pk]
+  name varchar
+  diachi varchar
+  sdt varchar
+  email varchar
+}
+
+Table Loaisach {
+  id int [pk]
+  name varchar
+  
+}
+
+Table MaKM {
+  id int [pk]
+  Name varchar
+  phantram int
+  NgayBD int
+  NgayKT int
+  
+}
+
+// Indexes: You can define a single or multi-column index 
+Table Sach {
+  id int [pk]
+  name varchar
+  tacgia varchar
+  loaisach varchar
+  nhaxuatban varchar
+  nhaphathanh varchar 
+  dichgia varchar
+  chitiet varchar
+  soluong int
+  giathanh int
+  makm int
+  img varchar
+}
+
+Ref: Sach.nhaxuatban > NSB.id // many-to-one
+Ref: Sach.nhaphathanh > NPH.id 
+Ref: NV.id < HOADON.manv
+Ref: KH.id < HOADON.makh
+Ref: HOADON.id < CTHOADON.id
+Ref: Sach.id < CTHOADON.masach
+Ref: Tacgia.id < Sach.tacgia
+Ref: Dichgia.id < Sach.dichgia
+Ref: Loaisach.id < Sach.loaisach
+Ref: MaKM.id < Sach.makm
